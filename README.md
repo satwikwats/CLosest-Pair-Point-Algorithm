@@ -1,1 +1,12 @@
 # CLosest-Pair-Point-Algorithm
+Computational geometry is a branch of computer science that deals with the problems related to geometry. One of such problem is the closest pair of points problem. Imagine hundreds of points randomly placed in and Euclidean plane, now we have to choose a pair of points that are closest to each other. On one look this problem may seem very trivial and can easily be figured out by finding distance of each point with respect to each other using the distance formula derived from Pythagorean theorem.
+
+But, using this method we get a time complexity of O(N^2), and this is not the best way to calculate the closest pair from a set of million points. We will try to use the divide and conquer method to develop an algorithm that is fast in calculating the closest pair.
+
+## Using Divide and Conquer
+
+We can improve on this method by using the most common thought while programming an algorithm that is divide and conquer. So, we use the idea that all the coordinates are sorted into an array, form which we can take a point M(x/2) that is the mid point of the array. Now we have two sub-arrays, we use this idea to compute the smallest distance between in both arrays. Let those two distance be di for the left array and dr for the right array.
+
+Comparing these two distances won't be enough, we have to include the fact that there could a pair of point on falling on each side of the median that results in the shortest distance. So, for that we take the final minimum value from di and dr and let that be d. Now we make a strip of width 2d that passes vertically and has an imaginary line passing through the midpoint.
+
+Again we do similar steps we find all the points that have distance closer than d to the mid-line. And now we sort them according to the y coordinate. Now this is where our trivial Pythagorean algorithm is left behind, it may look like it is again a O(N)^2 algorithm to compute the distances, but it uses the geometry of the system to reduce the search to only 7 points in the strip.  We can draw a rectangle around it of 2d and d and look at it. It will only have 7 points because if there is any other point in the rectangle that is less than $\Delta$ then it contradicts our algorithm. Our algorithm should be able to figure out if there are any points that are smaller than the d distance we calculated. Hence we can measure the distance between two points using a divide and conquer method.
